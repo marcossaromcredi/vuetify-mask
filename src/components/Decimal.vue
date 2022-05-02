@@ -106,20 +106,21 @@ export default {
         let flag = false;
         let arrayValue = value.toString().split("");
         for (var i = 0; i < arrayValue.length; i++) {
-          if (this.isInteger(arrayValue[i])) {
+          const value = arrayValue[i]
+          if (this.isInteger(value) || (i == 0 && value === "-")) {
             if (!flag) {
               // Retirar zeros à esquerda
-              if (arrayValue[i] !== "0") {
-                result = result + arrayValue[i];
+              if (value !== "0") {
+                result = result + value;
                 flag = true;
               } else {
                 // Permitir zero quando valor igual a zero - Tipo 3 (Money or Percent)
                 if (Number(value) === 0) {
-                  result = result + arrayValue[i];
+                  result = result + value;
                 }
               }
             } else {
-              result = result + arrayValue[i];
+              result = result + value;
             }
           }
         }
